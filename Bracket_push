@@ -1,0 +1,23 @@
+from string import maketrans
+def check_brackets(string):
+	arr=list(string)
+	print (arr)
+	stack=arr
+	si=[]
+	start=('([{)]}')
+	end=(')]}([{')
+	trans=maketrans(start,end)
+	size=-1
+	for i in range (len(arr)):
+		b=arr[i]
+		o=b.translate(trans)
+		if(b=='{' or b=='[' or b=='('):
+			si.append(arr[i]);
+			size=size+1
+		elif(si[size]==o and size>0):
+			size=size-1
+			si.pop();
+	if(size==0):
+		print ("Balanced");
+	else:
+		print ("Not Balanced");
